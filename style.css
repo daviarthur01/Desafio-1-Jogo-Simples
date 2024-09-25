@@ -1,0 +1,18 @@
+.container {
+  padding: 20px; /* Ajuste o padding conforme necessário */
+  background-color: rgba(0, 0, 0, 0.25); /* O fundo da div externa */
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 600px; /* Defina uma largura específica */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.divInterna {
+  margin: 0; /* Remover margem */
+  padding: 0; /* Ajustar padding se necessário */
+}

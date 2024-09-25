@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desafio #1 : Jogo Simples</title>
+    <!-- Link para o CSS do Bootstrap instalado localmente -->
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container text-center mt-5">
+      <div class="divInterna p-5 border rounded">
+        <h1>Pedra, Papel e Tesoura</h1>
+        <p>Escolha sua tentativa!</p>
+        
+          <label for="options" class="form-label">Escolha uma opção:</label>
+          <select id="options" class="form-select" name="options">
+            <option value="pedra">Pedra</option>
+            <option value="papel">Papel</option>
+            <option value="tesoura">Tesoura</option>
+          </select>
+
+        <button class="btn btn-primary botao" onclick="jogar()">Jogar!</button>
+
+        <div class="mt-3">
+          <p id="resultado"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script do JavaScript do Bootstrap instalado localmente -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Função para gerar a escolha aleatória do computador
+      function gerarEscolhaComputador() {
+        const escolhas = ["pedra", "papel", "tesoura"];
+        const escolhaAleatoria = escolhas[Math.floor(Math.random() * escolhas.length)];
+        return escolhaAleatoria;
+      }
+
+      // Função para determinar o vencedor
+      function determinarVencedor(jogador, computador) {
+        if (jogador === computador) {
+          return "Empate!";
+        } else if (
+          (jogador === "pedra" && computador === "tesoura") ||
+          (jogador === "papel" && computador === "pedra") ||
+          (jogador === "tesoura" && computador === "papel")
+        ) {
+          return "Você ganhou!";
+        } else {
+          return "Você perdeu!";
+        }
+      }
+
+      // Função principal para jogar
+      function jogar() {
+        const escolhaJogador = document.getElementById("options").value;
+        const escolhaComputador = gerarEscolhaComputador();
+        const resultado = determinarVencedor(escolhaJogador, escolhaComputador);
+        
+        document.getElementById("resultado").innerHTML = `
+          <strong>Você escolheu:</strong> ${escolhaJogador} <br>
+          <strong>O computador escolheu:</strong> ${escolhaComputador} <br>
+          <strong>Resultado:</strong> ${resultado}
+        `;
+      }
+    </script>
+  </body>
+</html>
