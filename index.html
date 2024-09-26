@@ -17,20 +17,22 @@
         <h1>Pedra, Papel e Tesoura</h1>
         <p>Escolha sua tentativa!</p>
         
-          <label for="options" class="form-label">Escolha uma opção:</label>
-          <select id="options" class="form-select" name="options">
-            <option value="pedra">Pedra</option>
-            <option value="papel">Papel</option>
-            <option value="tesoura">Tesoura</option>
-          </select>
+        <label for="options" class="form-label">Escolha uma opção:</label>
+        <select id="options" class="form-select" name="options">
+          <option value="pedra">Pedra</option>
+          <option value="papel">Papel</option>
+          <option value="tesoura">Tesoura</option>
+        </select>
 
-        <button class="btn btn-primary botao" onclick="jogar()">Jogar!</button>
+        <button class="btn btn-dark" style="margin-top: 40px;" onclick="jogar()">Jogar!</button>
 
         <div class="mt-3">
           <p id="resultado"></p>
         </div>
       </div>
     </div>
+
+    <div class="fireworks-container"></div>
 
     <!-- Script do JavaScript do Bootstrap instalado localmente -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -41,7 +43,7 @@
         const escolhaAleatoria = escolhas[Math.floor(Math.random() * escolhas.length)];
         return escolhaAleatoria;
       }
-
+    
       // Função para determinar o vencedor
       function determinarVencedor(jogador, computador) {
         if (jogador === computador) {
@@ -51,24 +53,86 @@
           (jogador === "papel" && computador === "pedra") ||
           (jogador === "tesoura" && computador === "papel")
         ) {
+          acionarFogos(); // Chama a função para os fogos de artifício
+          alterarCoresVibrantes(); // Altera as cores da interface
           return "Você ganhou!";
         } else {
           return "Você perdeu!";
         }
       }
-
+    
       // Função principal para jogar
       function jogar() {
         const escolhaJogador = document.getElementById("options").value;
         const escolhaComputador = gerarEscolhaComputador();
         const resultado = determinarVencedor(escolhaJogador, escolhaComputador);
-        
+    
         document.getElementById("resultado").innerHTML = `
           <strong>Você escolheu:</strong> ${escolhaJogador} <br>
           <strong>O computador escolheu:</strong> ${escolhaComputador} <br>
           <strong>Resultado:</strong> ${resultado}
         `;
       }
+    
+      // Função para acionar a animação de fogos
+      function acionarFogos() {
+        const fireworksContainer = document.querySelector('.fireworks-container');
+        fireworksContainer.innerHTML = ''; // Limpa qualquer explosão anterior
+    
+        for (let i = 0; i < 30; i++) { // Adiciona 30 fogos
+          const firework = document.createElement('div');
+          firework.classList.add('firework');
+    
+          // Definir tamanho aleatório
+          const size = Math.random() * 50 + 10; // Tamanho entre 10px e 60px
+          firework.style.width = `${size}px`;
+          firework.style.height = `${size}px`;
+    
+          // Definir cor aleatória
+          const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`; // Cores aleatórias
+          firework.style.backgroundColor = randomColor;
+    
+          // Definir posição aleatória
+          const positionX = Math.random() * 100; // Posição horizontal (0% a 100%)
+          const positionY = Math.random() * 100; // Posição vertical (0% a 100%)
+          firework.style.top = `${positionY}%`;
+          firework.style.left = `${positionX}%`;
+    
+          // Adicionar animação
+          firework.style.animationDuration = `${Math.random() * 2 + 1}s`; // Duração entre 1s e 3s
+    
+          fireworksContainer.appendChild(firework);
+    
+          // Remover bolinha após a animação
+          setTimeout(() => {
+            firework.remove();
+          }, 3000); // Remove após 3 segundos
+        }
+      }
+    
+      // Função para alterar as cores da interface após a vitória
+      function alterarCoresVibrantes() {
+        const container = document.querySelector('.container');
+        const botao = document.querySelector('.btn');
+        const divInterna = document.querySelector('.divInterna');
+    
+        // Alterar as cores
+        container.style.backgroundColor = 'hsl(104, 76%, 49%)';
+        divInterna.style.backgroundColor = 'hsl(104, 76%, 49%)';
+        botao.style.backgroundColor = 'hsl(100, 80%, 45%)';
+        botao.style.color = '#fff';
+    
+        // Após 5 segundos, restaurar as cores normais
+        setTimeout(() => {
+          container.style.backgroundColor = 'rgba(0, 0, 0, 0.25)';
+          divInterna.style.backgroundColor = 'rgba(0, 0, 0, 0.25)';
+          botao.style.backgroundColor = 'darkgray';
+          botao.style.color = '#000';
+        }, 1000); // Volta para as cores originais após 5 segundos
+      }
     </script>
+    
+    
+    
   </body>
 </html>
