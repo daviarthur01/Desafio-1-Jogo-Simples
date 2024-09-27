@@ -14,20 +14,19 @@
   <body>
     <div class="container text-center mt-5">
       <div class="divInterna p-5 border rounded">
-        <h1>Pedra, Papel e Tesoura</h1>
-        <p>Escolha sua tentativa!</p>
+        <h1 class="text">Pedra, Papel e Tesoura</h1>
         
-        <label for="options" class="form-label">Escolha uma opção:</label>
-        <select id="options" class="form-select" name="options">
+        <label for="options" class="text form-label" style="color: white;">Escolha uma opção:</label>
+        <select id="options" class="form-select text" name="options">
           <option value="pedra">Pedra</option>
           <option value="papel">Papel</option>
           <option value="tesoura">Tesoura</option>
         </select>
 
-        <button class="btn btn-dark" style="margin-top: 40px;" onclick="jogar()">Jogar!</button>
+        <button class="btn btn-dark" style="margin-top: 40px;color: white;" onclick="jogar()">Jogar!</button>
 
         <div class="mt-3">
-          <p id="resultado"></p>
+          <p id="resultado" style="color: white;"></p>
         </div>
       </div>
     </div>
@@ -68,9 +67,9 @@
         const resultado = determinarVencedor(escolhaJogador, escolhaComputador);
     
         document.getElementById("resultado").innerHTML = `
-          <strong>Você escolheu:</strong> ${escolhaJogador} <br>
-          <strong>O computador escolheu:</strong> ${escolhaComputador} <br>
-          <strong>Resultado:</strong> ${resultado}
+          <strong class="text">Você escolheu:</strong> ${escolhaJogador} <br>
+          <strong class="text">O computador escolheu:</strong> ${escolhaComputador} <br>
+          <strong class="text">Resultado:</strong> ${resultado}
         `;
       }
     
@@ -115,12 +114,13 @@
         const container = document.querySelector('.container');
         const botao = document.querySelector('.btn');
         const divInterna = document.querySelector('.divInterna');
-    
+        const textos = document.querySelector('.text');
         // Alterar as cores
         container.style.backgroundColor = 'hsl(104, 76%, 49%)';
         divInterna.style.backgroundColor = 'hsl(104, 76%, 49%)';
         botao.style.backgroundColor = 'hsl(100, 80%, 45%)';
         botao.style.color = '#fff';
+        textos.style.color= "#fff";
     
         // Após 5 segundos, restaurar as cores normais
         setTimeout(() => {

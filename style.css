@@ -1,26 +1,23 @@
 .container {
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.25); /* Cor padrão */
+  background-color: rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   margin: 0 auto;
   width: 100%;
-  height: 200%;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  max-width: 400px; /* Limite para telas grandes */
+  height: auto; /* Remover altura fixa */
 }
 
 .divInterna {
-  margin: 0; /* Remover margem */
-  padding: 0; /* Ajustar padding se necessário */
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.9); /* Melhor contraste */
 }
 
 .btn {
-  background-color: darkgrey; /* Cor padrão */
+  background-color: darkgray;
   color: #000;
+  width: 100%; /* Deixa o botão ocupar a largura total em telas pequenas */
+  padding: 10px;
 }
 
 .fireworks-container {
@@ -29,8 +26,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Impede que os fogos interfiram na interação do usuário */
-  overflow: hidden; /* Evitar que as bolinhas saiam da tela */
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .firework {
@@ -47,5 +44,15 @@
   100% {
     transform: scale(3);
     opacity: 0;
+  }
+}
+
+/* Adicionar media queries para melhorar a responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  .btn {
+    padding: 15px;
   }
 }
