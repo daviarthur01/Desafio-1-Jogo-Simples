@@ -10,7 +10,8 @@
 
 .divInterna {
   padding: 15px;
-  background-color: grey /* Melhor contraste */
+  background-color: grey; /* Melhor contraste */
+  border-radius:10px;
 }
 
 .btn {
